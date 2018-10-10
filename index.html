@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Crystal collector</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- I forgot this and $(document).ready wounldn't work! Make sure to add jQuery src -->
 </head>
 <body>
 
@@ -13,36 +15,101 @@
     <h1>Crystal collector</h1>
 </header>
 
-<main class="main">
-    <h3 class="center">
-        How to play:
-    </h3>
+<div>
+    <h3>How to play: </h3>
     
     <p>At the begining of each round, each gem will be given a random value.</p>
     <p>You have to click the gems to try and match the number on screen to win.</p>
-    <p>There are four types of crystal.</p>    
+    <h3>There are four types of crystal.</h3>    
     <ul class="bullets">
-        <li class="blue">Blue</li>
-        <li class="red">Red</li>
-        <li class="green">Green</li>
-        <li class="yellow">Yellow</li>
+        <li id="blue">Blue</li>
+        <li id="red">Red</li>
+        <li id="green">Green</li>
+        <li id="purple">Purple</li>
     </ul>
-    <p><span class="message">Are you ready!?</span></p>
+    <p><span class="message_Display">Are you ready!?</span></p>
 
-    <h5>Number to get: <span class="numberToGet"></span></h5>
+<div id="info">
 
-    <h5>Wins: <span class="wins">0</span></h5>
-    <h5>Losses: <span class="losses">0</span></h5>
+    <h5 class="scoreBoard" id="wins">Wins</h5>
+        <span class="scoreBoard" id="wins_Display">0</span>
+    <h5 class="scoreBoard" id="divider">:</h5>
+        <span class="scoreBoard" id="losses_Display">0</span>
+    <h5 class="scoreBoard" id="losses">Losses</h5>
 
-    <h5>Your total score is: <span class="score">0</span></h5>
-
-</main>
+    <h5 id="number">Number to get: <span class="numberToGet_Display"></span></h5>
 
 
+    <h5 id="total">Your total is: <span class="total_Display">0</span></h5>
+</div>
+
+</div>
+
+<!-- WORKING ON JS CODE, MOVE TO ASSETS/JS/LOGIC.JS ONCE TESTED -->
+<script type="text/javascript">
+
+    // Wait until document is ready.
+    
+    $(document).ready(function() {
+
+
+    // Create 4 crystals, use function randomGemNumber to assign values.
+    
+    
+    // VARIBLES
+    // Declare var win, loose, total, numberToGet.
+    var win;
+    var loose;
+    var total;
+    var numberToGet;
+    
+    
+    // FUNCTIONS
+    // Create function for numberToGet with a random value 19-120, at the start of each round, display on screen.
+    var numberToGet = function() {
+        return Math.floor(Math.random() * 102) + 19;
+    };
+    // WORKING console.log(numberToGet());
+
+    
+    // Create function randomGemNumber for each gem to assign each a random value between 1-12, at the start of each round.
+    var randomGemNumber = function() {
+        return Math.floor(Math.random() * 12) + 1;
+    };    
+    // WORKING console.log(randomGemNumber());
+
+    
+                // // WIN/LOOSE/PLAY/RESTART ROUND
+                // // If the total > numberToGet then proceed.
+                // // Else if total = numberToGet, win++, alert you win, resetRound.
+                // // Else total < numberToGet, loose++, alert you loose, resetRound.
+                // If total > number allow game to play
+                // else if total = to number win++
+                // else total < number loose++
+    
+                // function randomGemNumber {}
+    
+    
+                // function total {}
+    });
+
+
+
+    /* PseudoCode
+    
+    // Write in jQuery:
+    // Wait until document is ready.
+    // Declare var win, loose, total, numberToGet.
+    // Create 4 crystals, use function randomGemNumber to assign values.
+    // Create function for numberToGet with a random value 19-120, at the start of each round, display on screen.
+    // Create function randomGemNumber for each gem to assign each a random value between 1-12, at the start of each round.
+    // Use total++ to add each crystal click to the total, display on screen.
+    // If the total > numberToGet then proceed.
+    // Else if total = numberToGet, win++, alert you win, resetRound.
+    // Else total < numberToGet, loose++, alert you loose, resetRound.
+    
+    */
+    </script>
+    
 </body>
-
-<script>
-
-</script>
-
 </html>

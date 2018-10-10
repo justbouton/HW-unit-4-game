@@ -1,0 +1,71 @@
+body {
+    width: 960px;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    border: 5px solid black;
+}
+
+h1 {
+    padding: 10px;
+    font-size: 30px;
+    border-bottom: 4px black solid;
+}
+
+h3 {
+    padding: 8px;
+    font-size: 20px;
+}
+
+p {
+    margin: 0 60px 0 60px;
+    line-height: 1.25em;
+}
+
+#blue {
+    color: blue;
+    display: inline-block;
+}
+
+#red {
+    color: red;
+    display: inline-block;
+}
+
+#green {
+    color: green;
+    display: inline-block;
+
+}
+
+#purple {
+    color: purple;
+    display: inline-block;
+}
+
+#info {
+    padding: 20px 0 20px 0;
+    width: 400px;
+    margin: 0 auto;
+    border-top: 2px solid red;
+}
+
+.scoreBoard {
+    margin: 0 auto;
+    position: relative;
+    top: -10px;
+    display: inline-block;
+}
+
+#wins {
+    display: inline-block;
+}
+
+
+#losses {
+    display: inline-block;
+}
+
+#total {
+    display: inline-block;
+}
