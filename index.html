@@ -19,28 +19,31 @@
     <h3>How to play: </h3>
     
     <p>At the begining of each round, each gem will be given a random value.</p>
-    <p>You have to click the gems to try and match the number on screen to win.</p>
-    <h3>There are four types of crystal.</h3>    
-    <ul class="bullets">
-        <li id="blue">Blue</li>
-        <li id="red">Red</li>
-        <li id="green">Green</li>
-        <li id="purple">Purple</li>
-    </ul>
-    <p><span class="message_Display">Are you ready!?</span></p>
+    <p>You must click the gems to try and match the "Number to get" to win.</p>
+    <h3>Click on a crystal!</h3>    
+
+    <div id="gemHolder"></div>
+
+    <!-- Assign images to buttons in JS, assign by gem value? -->
+    <!-- var gem = $('<div background-image: url "assets/images/crystal1.jpg">"</div>') -->
+
+    
+
+
+    <!-- <p><span class="message_Display">Are you ready!?</span></p> -->
 
 <div id="info">
 
-    <h5 class="scoreBoard" id="wins">Wins</h5>
-        <span class="scoreBoard" id="wins_Display">0</span>
+    <h5 class="scoreBoard" id="win">Win</h5>
+        <span class="scoreBoard" id="win_Display">0</span>
     <h5 class="scoreBoard" id="divider">:</h5>
-        <span class="scoreBoard" id="losses_Display">0</span>
-    <h5 class="scoreBoard" id="losses">Losses</h5>
+        <span class="scoreBoard" id="lose_Display">0</span>
+    <h5 class="scoreBoard" id="lose">Lose</h5>
 
-    <h5 id="number">Number to get: <span class="numberToGet_Display"></span></h5>
+    <h5 id="number">Number to get: <span id="numberToGet_Display"></span></h5>
 
 
-    <h5 id="total">Your total is: <span class="total_Display">0</span></h5>
+    <h5 id="total">Your total is: <span id="total_Display">0</span></h5>
 </div>
 
 </div>
@@ -48,51 +51,99 @@
 <!-- WORKING ON JS CODE, MOVE TO ASSETS/JS/LOGIC.JS ONCE TESTED -->
 <script type="text/javascript">
 
-    // Wait until document is ready.
-    
-    $(document).ready(function() {
+// Wait until document is loaded "ready.""
+$(document).ready(function() {
 
-
-    // Create 4 crystals, use function randomGemNumber to assign values.
-    
-    
     // VARIBLES
     // Declare var win, loose, total, numberToGet.
-    var win;
-    var loose;
-    var total;
-    var numberToGet;
+    var win = 0;
+    var loose = 0;
+    var total = 0;
+    var numberToGet = 0;
+
+    resetRound()    
     
+
+    // RESETROUND
+    // resetRound sets total to 0, picks new values for each crystal, picks new value for numberToGet, updates display.
+    function resetRound() {
+        total = 0;
+        clearCrystals()
+        createCrystals()
+        numberToGet = Math.floor(Math.random() * 102) + 19;
+        updateDisplay();
+    };
     
     // FUNCTIONS
     // Create function for numberToGet with a random value 19-120, at the start of each round, display on screen.
-    var numberToGet = function() {
-        return Math.floor(Math.random() * 102) + 19;
-    };
-    // WORKING console.log(numberToGet());
-
+    // function numberToGet() {
+    //     return Math.floor(Math.random() * 102) + 19;
+    // };
     
-    // Create function randomGemNumber for each gem to assign each a random value between 1-12, at the start of each round.
-    var randomGemNumber = function() {
+    // UPDATE DISPLAY
+    // updateDisply will update win_Display, lose_Display, total_Display. 
+    function updateDisplay() {
+        $('#win_Display').text(win)
+        $('#lose_Display').text(loose)
+        $('#numberToGet_Display').text(numberToGet)
+        $('#total_Display').text(total)
+    };   
+ 
+    function clearCrystals() {
+
+    }
+
+    // Create img for each crystal.attr i,use function randomGemNumber to assign gem values to each crsytal.
+    function createCrystals() {    
+        for (var i = 0; i < 4; i++) { // Loop 4 times, once per crystal.
+            if ($("gemHolder").attr("<img>"))
+            $("<img>").remove("<img>")
+            
+            var crystalImg = $("<img>");            
+            crystalImg.addClass("gem")
+            crystalImg.attr("src", "assets/images/crystal" + i + ".jpg"); // assign source image value of assets/images/crystal/ i .jpg.
+            crystalImg.attr("gemValue", gemValue());// add randomnumber to attr between 1-12.
+            $("#gemHolder").append(crystalImg); // Selecting gemHolder append above
+        }
+    }
+
+    // Value of each gem created in createCrystal
+    function gemValue() {
         return Math.floor(Math.random() * 12) + 1;
-    };    
-    // WORKING console.log(randomGemNumber());
+    };
+    
+    // On button click select this gemValue, add gemValue to gemValue. 
+    $(".gem").on("click", function() {
+        var gemValue = ($(this).attr("gemValue"));
+        gemValue = parseInt(gemValue);
+        total += gemValue;
+        updateDisplay();
 
-    
-                // // WIN/LOOSE/PLAY/RESTART ROUND
-                // // If the total > numberToGet then proceed.
-                // // Else if total = numberToGet, win++, alert you win, resetRound.
-                // // Else total < numberToGet, loose++, alert you loose, resetRound.
-                // If total > number allow game to play
-                // else if total = to number win++
-                // else total < number loose++
-    
-                // function randomGemNumber {}
-    
-    
-                // function total {}
+            if(numberToGet === total) {
+                win++;
+                alert("Winner winner chicken dinner!");
+                resetRound();
+            }
+
+            else if (total >= numberToGet) {
+                loose++;
+                alert("Better luck next round.");
+                resetRound();
+            }
     });
 
+    
+    // function total {}
+    
+// });
+
+
+// $("button").click(function(){
+//     $("p").append("<b>Appended text</b>");
+// });
+
+
+})// Close of function line 55.
 
 
     /* PseudoCode
@@ -100,7 +151,7 @@
     // Write in jQuery:
     // Wait until document is ready.
     // Declare var win, loose, total, numberToGet.
-    // Create 4 crystals, use function randomGemNumber to assign values.
+    // Create 4 crystals dynamically, for loop? Use function randomGemNumber to assign values to each gemValue.
     // Create function for numberToGet with a random value 19-120, at the start of each round, display on screen.
     // Create function randomGemNumber for each gem to assign each a random value between 1-12, at the start of each round.
     // Use total++ to add each crystal click to the total, display on screen.
