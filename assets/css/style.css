@@ -14,11 +14,16 @@ h1 {
 
 h3 {
     padding: 8px;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+h5 {
     font-size: 20px;
 }
 
 p {
-    margin: 0 60px 0 60px;
+    margin: 0 65px 0 65px;
     line-height: 1.25em;
 }
 
@@ -36,19 +41,18 @@ p {
 }
 
 .scoreBoard {
-    margin: 0 auto;
+    margin: 3px;
+    font-size: 24px;
     position: relative;
-    top: -10px;
-    display: inline-block;
+    top: -15px;
+    display: inline;
 }
 
-#wins {
+#win_Display, #lose_Display, #total_Display, #numberToGet_Display{
     display: inline-block;
-}
+    font-weight: bolder;
+    font-size: 24px;
 
-
-#losses {
-    display: inline-block;
 }
 
 #total {
