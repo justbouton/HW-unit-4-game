@@ -1,31 +1,54 @@
 // Wait until document is loaded "ready.""
 $(document).ready(function() {
 
-    // VARIBLES
+// VARIBLES
     // Declare var win, loose, total, numberToGet.
     var win = 0;
     var loose = 0;
     var total = 0;
     var numberToGet = 0;
 
+
+    createCrystals()
     resetRound()    
+
     
+// FUNCTIONS
+    // Create function for numberToGet with a random value 19-120, at the start of each round, display on screen.
+    // function numberToGet() {
+    //     return Math.floor(Math.random() * 102) + 19;
+    // };
+
+
+// HELP! FIXED DUPLICATE CRYSTALS ON NEW ROUND.
+// HELP! NEED TO UPDATE VALUES EACH ROUND.
+
+
+    function gemValueUpdate() {
+        // for (var i = 0; i < 4; i++) { // Loop 4 times, once per crystal.
+        //  $("img").attr("gemValue" + i, gemValue());
+    }
+
+
+    function createCrystals() {
+        for (var i = 0; i < 4; i++) { // Loop 4 times, once per crystal.
+        var crystalImg = $("<img>");            
+        crystalImg.addClass("gem")
+        crystalImg.attr("gemValue", gemValue)
+        crystalImg.attr("src", "assets/images/crystal" + i + ".jpg"); // assign source image value of assets/images/crystal/ i .jpg.
+        $("#gemHolder").append(crystalImg); // Selecting gemHolder append above
+        }
+    }
+
 
     // RESETROUND
     // resetRound sets total to 0, picks new values for each crystal, picks new value for numberToGet, updates display.
     function resetRound() {
         total = 0;
-        clearCrystals()
-        createCrystals()
+        gemValueUpdate()
         numberToGet = Math.floor(Math.random() * 102) + 19;
         updateDisplay();
     };
-    
-    // FUNCTIONS
-    // Create function for numberToGet with a random value 19-120, at the start of each round, display on screen.
-    // function numberToGet() {
-    //     return Math.floor(Math.random() * 102) + 19;
-    // };
     
     // UPDATE DISPLAY
     // updateDisply will update win_Display, lose_Display, total_Display. 
@@ -35,24 +58,6 @@ $(document).ready(function() {
         $('#numberToGet_Display').text(numberToGet)
         $('#total_Display').text(total)
     };   
- 
-    function clearCrystals() {
-
-    }
-
-    // Create img for each crystal.attr i,use function randomGemNumber to assign gem values to each crsytal.
-    function createCrystals() {    
-        for (var i = 0; i < 4; i++) { // Loop 4 times, once per crystal.
-            if ($("gemHolder").attr("<img>"))
-            $("<img>").remove("<img>")
-            
-            var crystalImg = $("<img>");            
-            crystalImg.addClass("gem")
-            crystalImg.attr("src", "assets/images/crystal" + i + ".jpg"); // assign source image value of assets/images/crystal/ i .jpg.
-            crystalImg.attr("gemValue", gemValue());// add randomnumber to attr between 1-12.
-            $("#gemHolder").append(crystalImg); // Selecting gemHolder append above
-        }
-    }
 
     // Value of each gem created in createCrystal
     function gemValue() {
@@ -79,18 +84,7 @@ $(document).ready(function() {
             }
     });
 
-    
-    // function total {}
-    
-// });
-
-
-// $("button").click(function(){
-//     $("p").append("<b>Appended text</b>");
-// });
-
-
-})// Close of function line 55.
+})// Close of function line 2.
 
 
     /* PseudoCode
@@ -104,6 +98,6 @@ $(document).ready(function() {
     // Use total++ to add each crystal click to the total, display on screen.
     // If the total > numberToGet then proceed.
     // Else if total = numberToGet, win++, alert you win, resetRound.
-    // Else total < numberToGet, loose++, alert you loose, resetRound.
+    // Else total < numberToGet, lose++, alert you loose, resetRound.
     
     */

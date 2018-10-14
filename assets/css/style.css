@@ -27,7 +27,7 @@ p {
     line-height: 1.25em;
 }
 
-.gem {
+.gem, .gem0, .gem1, .gem2, .gem3 {
     padding: 9px;
     width: 80px;
     height: 80px;
