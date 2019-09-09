@@ -9,7 +9,6 @@ $(document).ready(function() {
     var numberToGet = 0;
 
 
-    createCrystals()
     resetRound()    
 
     
@@ -31,12 +30,15 @@ $(document).ready(function() {
 
 
     function createCrystals() {
+        // Select .gemHolder and clear it.
+        $('#gemHolder').html('');
+
         for (var i = 0; i < 4; i++) { // Loop 4 times, once per crystal.
-        var crystalImg = $("<img>");            
-        crystalImg.addClass("gem")
-        crystalImg.attr("gemValue", gemValue)
-        crystalImg.attr("src", "assets/images/crystal" + i + ".jpg"); // assign source image value of assets/images/crystal/ i .jpg.
-        $("#gemHolder").append(crystalImg); // Selecting gemHolder append above
+            var crystalImg = $("<img>");            
+            crystalImg.addClass("gem")
+            crystalImg.attr("gemValue", gemValue)
+            crystalImg.attr("src", "assets/images/crystal" + i + ".jpg"); // assign source image value of assets/images/crystal/ i .jpg.
+            $("#gemHolder").append(crystalImg); // Selecting gemHolder append above
         }
     }
 
@@ -47,7 +49,29 @@ $(document).ready(function() {
         total = 0;
         gemValueUpdate()
         numberToGet = Math.floor(Math.random() * 102) + 19;
+        createCrystals();
         updateDisplay();
+
+        // On button click select this gemValue, add gemValue to gemValue. 
+        $(".gem").on("click", function() {
+            
+            var gemValue = ($(this).attr("gemValue"));
+            gemValue = parseInt(gemValue);
+            total += gemValue;
+            updateDisplay();
+            
+                if(numberToGet === total) {
+                    win++;
+                    alert("Winner winner chicken dinner!");
+                    resetRound();
+                }
+
+                else if (total >= numberToGet) {
+                    loose++;
+                    alert("Better luck next round.");
+                    resetRound();
+                }
+        });
     };
     
     // UPDATE DISPLAY
@@ -64,25 +88,7 @@ $(document).ready(function() {
         return Math.floor(Math.random() * 12) + 1;
     };
     
-    // On button click select this gemValue, add gemValue to gemValue. 
-    $(".gem").on("click", function() {
-        var gemValue = ($(this).attr("gemValue"));
-        gemValue = parseInt(gemValue);
-        total += gemValue;
-        updateDisplay();
 
-            if(numberToGet === total) {
-                win++;
-                alert("Winner winner chicken dinner!");
-                resetRound();
-            }
-
-            else if (total >= numberToGet) {
-                loose++;
-                alert("Better luck next round.");
-                resetRound();
-            }
-    });
 
 })// Close of function line 2.
 

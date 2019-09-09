@@ -1,7 +1,8 @@
 body {
+    padding: 20px;
     width: 960px;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 50px auto;
     text-align: center;
     border: 5px solid black;
 }
@@ -27,7 +28,7 @@ p {
     line-height: 1.25em;
 }
 
-.gem, .gem0, .gem1, .gem2, .gem3 {
+.gem {
     padding: 9px;
     width: 80px;
     height: 80px;
