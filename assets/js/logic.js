@@ -7,36 +7,34 @@ $(document).ready(function() {
     var loose = 0;
     var total = 0;
     var numberToGet = 0;
-
-
-    resetRound()    
-
     
 // FUNCTIONS
     // Create function for numberToGet with a random value 19-120, at the start of each round, display on screen.
-    // function numberToGet() {
-    //     return Math.floor(Math.random() * 102) + 19;
-    // };
 
+    // UPDATE DISPLAY
+    // updateDisply will update win_Display, lose_Display, total_Display. 
+    function updateDisplay() {
+        $('#win_Display').text(win)
+        $('#lose_Display').text(loose)
+        $('#numberToGet_Display').text(numberToGet)
+        $('#total_Display').text(total)
+    };   
 
-// HELP! FIXED DUPLICATE CRYSTALS ON NEW ROUND.
-// HELP! NEED TO UPDATE VALUES EACH ROUND.
-
-
-    function gemValueUpdate() {
-        // for (var i = 0; i < 4; i++) { // Loop 4 times, once per crystal.
-        //  $("img").attr("gemValue" + i, gemValue());
-    }
+    // Value of each gem created in createCrystal
+    function gemValue() {
+        return Math.floor(Math.random() * 12) + 1;
+    };
 
 
     function createCrystals() {
-        // Select .gemHolder and clear it.
+        // Select id gemHolder and clear it.
         $('#gemHolder').html('');
 
-        for (var i = 0; i < 4; i++) { // Loop 4 times, once per crystal.
+        // Loop through and create four crystals <img class='gem' gemValue='gemValue'
+        for (var i = 0; i < 4; i++) { 
             var crystalImg = $("<img>");            
             crystalImg.addClass("gem")
-            crystalImg.attr("gemValue", gemValue)
+            crystalImg.attr("data-name", gemValue)
             crystalImg.attr("src", "assets/images/crystal" + i + ".jpg"); // assign source image value of assets/images/crystal/ i .jpg.
             $("#gemHolder").append(crystalImg); // Selecting gemHolder append above
         }
@@ -47,15 +45,14 @@ $(document).ready(function() {
     // resetRound sets total to 0, picks new values for each crystal, picks new value for numberToGet, updates display.
     function resetRound() {
         total = 0;
-        gemValueUpdate()
         numberToGet = Math.floor(Math.random() * 102) + 19;
         createCrystals();
         updateDisplay();
 
-        // On button click select this gemValue, add gemValue to gemValue. 
+        // On button click select this data-name, += gemValue. 
         $(".gem").on("click", function() {
             
-            var gemValue = ($(this).attr("gemValue"));
+            var gemValue = ($(this).attr("data-name"));
             gemValue = parseInt(gemValue);
             total += gemValue;
             updateDisplay();
@@ -73,22 +70,9 @@ $(document).ready(function() {
                 }
         });
     };
-    
-    // UPDATE DISPLAY
-    // updateDisply will update win_Display, lose_Display, total_Display. 
-    function updateDisplay() {
-        $('#win_Display').text(win)
-        $('#lose_Display').text(loose)
-        $('#numberToGet_Display').text(numberToGet)
-        $('#total_Display').text(total)
-    };   
 
-    // Value of each gem created in createCrystal
-    function gemValue() {
-        return Math.floor(Math.random() * 12) + 1;
-    };
-    
-
+    // Start game
+    resetRound()    
 
 })// Close of function line 2.
 
